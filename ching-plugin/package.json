@@ -1,9 +1,9 @@
 {
-  "name": "my-plugin",
+  "name": "ching-plugin",
   "version": "1.0.0",
   "license": "MIT",
-  "main": "dist/MyPlugin.js",
-  "types": "dist/MyPlugin.d.ts",
+  "main": "dist/ChingPlugin.js",
+  "types": "dist/ChingPlugin.d.ts",
   "scripts": {
     "build": "tsc",
     "start-basic": "tsc -w",

@@ -14,13 +14,13 @@ const DEPLOYER_ADDRESS = utils.bufferToHex(utils.privateToAddress(DEPLOYER_PK));
 
 const ERC20_ADDRESS = utils.bufferToHex(utils.generateAddress(DEPLOYER_ADDRESS, '0'));
 
-const getAccount = async web3 => {
+const getAccount = (async web3 => {
   const [defaultAccount] = await web3.eth.getAccounts();
   if (!defaultAccount) {
     throw new Error('Can not find an unlocked account');
   }
   return defaultAccount;
-}
+})
 
 (async function() {
   if (!await testRPC(RPC)) {
