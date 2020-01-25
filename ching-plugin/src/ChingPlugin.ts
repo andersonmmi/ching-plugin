@@ -26,7 +26,7 @@ function getOrderId(txMessage: any) {
   return scan && scan[1]
 }
 
-export default class ChingPlugin implements Plugin {
+export default class ChingPlugin {
   private pluginContext?: BurnerPluginContext;
 
   initializePlugin(pluginContext: BurnerPluginContext) {
