@@ -22,7 +22,9 @@ To rename the plugin from "MyPlugin" to your own plugin name, you must update th
 4. Rename `MyPlugin.ts`
 5. Change `MyPlugin.js` and `MyPlugin.d.ts` in the plugin `package.json` file
 6. Change the class name in the main plugin file
-7. Change rename `my-plugin` dependency in `basic-wallet/package.json` & `local-wallet/package.json`
-8. In `basic-wallet/src/index.tsx` and `local-wallet/src/index.tsx`, update the import
+7. Change the import statement in `my-plugin/src/ui/MyElement.tsx`
+8. In that same file, change `const _plugin = plugin as MyPlugin;`
+9. Change rename `my-plugin` dependency in `basic-wallet/package.json` & `local-wallet/package.json`
+10. In `basic-wallet/src/index.tsx` and `local-wallet/src/index.tsx`, update the import
   `import MyPlugin from 'my-plugin';` as well as the `new MyPlugin()` constructor.
-9. Finally, run `yarn install` in the root to re-link the packages
+11. Finally, run `yarn install` in the root to re-link the packages
