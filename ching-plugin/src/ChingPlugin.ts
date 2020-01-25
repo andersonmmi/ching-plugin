@@ -1,6 +1,4 @@
 import { BurnerPluginContext, Plugin, Actions } from '@burner-wallet/types';
-import MyPage from './ui/MyPage';
-import MyElement from './ui/MyElement';
 
 interface PluginActionContext {
   actions: Actions;
@@ -11,12 +9,6 @@ export default class ChingPlugin implements Plugin {
 
   initializePlugin(pluginContext: BurnerPluginContext) {
     this.pluginContext = pluginContext;
-
-    pluginContext.addPage('/my-page', MyPage);
-    pluginContext.addButton('apps', 'My Plugin', '/my-page', {
-      description: 'Sample plugin page',
-    });
-    pluginContext.addElement('home-middle', MyElement);
 
     onQRScanned: ((scan: string, ctx: PluginActionContext) => {
       if (scan === 'My Plugin') {
