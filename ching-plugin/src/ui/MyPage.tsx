@@ -5,7 +5,7 @@ import { Asset } from '@burner-wallet/assets';
 const MyPage: React.FC<PluginPageContext> = ({ burnerComponents, assets, defaultAccount }) => {
   const { Page } = burnerComponents;
   return (
-    <Page title="My Page">
+    <Page title="Ching Plugin Page">
       <div>Account: {defaultAccount}</div>
       <div>Assets: {assets.map((asset: Asset) => asset.name).join(', ')}</div>
     </Page>
