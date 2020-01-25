@@ -9,7 +9,7 @@ import axios from "axios";
 //   }
 // }
 
-function getTxDetails(qr) {
+function getTxDetails(qr: string) {
   const REGEX = /\/payment\/(0x[0-9a-f]{40})\/((\D\w*)\/)?([\d.]+)\/(\w*)/i
   const scan = REGEX.exec(qr)
   return scan && {
@@ -20,14 +20,16 @@ function getTxDetails(qr) {
   }
 }
 
-function getOrderId(txMessage) {
+function getOrderId(txMessage: any) {
   const REGEX = /Ching order: (\w+)/
   const scan = REGEX.exec(txMessage)
   return scan && scan[1]
 }
 
-export default class ChingPlugin {
-  initializePlugin(pluginContext) {
+export default class ChingPlugin implements Plugin {
+  private pluginContext?: BurnerPluginContext;
+
+  initializePlugin(pluginContext: BurnerPluginContext) {
 
     // Handle Ching QR codes
     pluginContext.onQRScanned((qr, pluginCtx) => {
