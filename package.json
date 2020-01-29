@@ -4,12 +4,15 @@
   "author": "David Mihal <david@dmihal.com>",
   "license": "MIT",
   "private": true,
+  "homepage": "http://andersonmmi.github.io/ching-plugin",
   "scripts": {
     "install": "lerna bootstrap",
     "build": "lerna run --ignore local-wallet --ignore basic-wallet build",
     "lint": "eslint '*/**/*.{js,ts,tsx}'",
     "start-basic": "lerna run --parallel start-basic",
-    "start-local": "lerna run --parallel start-local"
+    "start-local": "lerna run --parallel start-local",
+    "predeploy": "lerna run --ignore local-wallet --ignore ching-plugin build",
+    "gh-deploy": "gh-pages -d build"
   },
   "workspaces": [
     "basic-wallet",
@@ -24,6 +27,7 @@
     "lerna": "^3.16.4"
   },
   "dependencies": {
+    "gh-pages": "^2.2.0",
     "typescript": "^3.6.3"
   }
 }
