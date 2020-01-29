@@ -1,10 +1,10 @@
 {
+  "homepage": "http://andersonmmi.github.io/ching-plugin",
   "name": "ching-plugin",
   "description": "Allows burner wallet to transact with Ching Point of Sale",
   "author": "David Mihal <david@dmihal.com>",
   "license": "MIT",
   "private": true,
-  "homepage": "http://andersonmmi.github.io/ching-plugin",
   "scripts": {
     "install": "lerna bootstrap",
     "build": "lerna run --ignore local-wallet --ignore basic-wallet build",
