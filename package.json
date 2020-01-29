@@ -11,7 +11,7 @@
     "lint": "eslint '*/**/*.{js,ts,tsx}'",
     "start-basic": "lerna run --parallel start-basic",
     "start-local": "lerna run --parallel start-local",
-    "predeploy": "lerna run --ignore local-wallet --ignore ching-plugin build",
+    "predeploy": "lerna run --ignore local-wallet build",
     "gh-deploy": "gh-pages -d build"
   },
   "workspaces": [
