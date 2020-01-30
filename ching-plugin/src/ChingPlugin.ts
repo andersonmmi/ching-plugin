@@ -1,5 +1,6 @@
 import { BurnerPluginContext, Plugin, Actions } from '@burner-wallet/types';
 import axios from "axios";
+import OrderPage from './OrderPage';
 
 // export default class ChingPlugin implements Plugin {
 //   private pluginContext?: BurnerPluginContext;
@@ -9,46 +10,34 @@ import axios from "axios";
 //   }
 // }
 
-function getTxDetails(qr: string) {
+export function getTxDetails(qr: string) {
   const REGEX = /\/payment\/(0x[0-9a-f]{40})\/((\D\w*)\/)?([\d.]+)\/(\w*)/i
   const scan = REGEX.exec(qr)
   return scan && {
     to: scan[1],
     tokenName: scan[3] || 'xdai',
     amount: scan[4],
-    orderId: scan[5]
+    orderId: scan[5],
+    url: scan[0],
   }
-}
-
-function getOrderId(txMessage: any) {
-  const REGEX = /Ching order: (\w+)/
-  const scan = REGEX.exec(txMessage)
-  return scan && scan[1]
 }
 
 export default class ChingPlugin {
   private pluginContext?: BurnerPluginContext;
 
   initializePlugin(pluginContext: BurnerPluginContext) {
+    pluginContext.addPage('/payment', OrderPage);
 
     // Handle Ching QR codes
     pluginContext.onQRScanned((qr, pluginCtx) => {
       console.log("Scanned:", qr)
 
-      const txDetails = getTxDetails(qr)
+      const txDetails = getTxDetails(qr);
       if (!txDetails) {
         return
       }
 
-      console.log(txDetails)
-
-      pluginCtx.actions.send({
-        to: txDetails.to,
-        asset: txDetails.tokenName.toLowerCase(),
-        ether: txDetails.amount,
-        message: `Ching order: ${txDetails.orderId}`
-      });
-
+      pluginCtx.actions.navigateTo(txDetails.url);
       return true;
     });
 
@@ -56,14 +45,13 @@ export default class ChingPlugin {
     pluginContext.onSent(tx => {
       console.log("Sent:", { tx });
 
-      const orderId = getOrderId(tx.message)
-      if (!orderId) {
+      if (!tx.id) {
         return
       }
 
       let url =
         "https://us-central1-daipos.cloudfunctions.net/transactionBuffer?" +
-        "orderId=" + orderId +
+        "orderId=" + tx.id +
         "&txHash=" + tx.hash +
         "&networkId=100";
 
