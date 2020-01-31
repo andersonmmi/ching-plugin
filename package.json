@@ -1,7 +1,6 @@
 {
-  "homepage": "http://andersonmmi.github.io/ching-plugin",
-  "name": "ching-plugin",
-  "description": "Allows burner wallet to transact with Ching Point of Sale",
+  "name": "sample-burner-wallet-plugin",
+  "description": "Sample repo for building a Burner Wallet 2 plugin",
   "author": "David Mihal <david@dmihal.com>",
   "license": "MIT",
   "private": true,
