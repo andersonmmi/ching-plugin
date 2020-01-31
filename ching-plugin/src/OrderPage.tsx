@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PluginPageContext } from '@burner-wallet/types';
 import { getTxDetails } from './ChingPlugin';
+import axios from "axios";
 
 const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, actions }) => {
   const [note, setNote] = useState()
@@ -26,8 +27,26 @@ const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, ac
     });
   };
 
+  // just need to render some data from the endpoint
+  // let itemizedList = () => {
+  //   axios.get("https://us-central1-daipos.cloudfunctions.net/orderDetails?orderId=13VwSGhmVuwjpLKFmqd7")
+  // }
+
+  let itemizedList;
+
+  axios.get("https://us-central1-daipos.cloudfunctions.net/itemDetails?itemId=RHfVDGM5L2BKPaIwGOXA", {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    }
+  })
+    .then(response => {
+          itemizedList = response;
+        });
+
   return (
     <Page title="Ching Checkout">
+      <div>Itemized list goes here</div>
+      <div>{itemizedList}</div>
       <div>Notes:</div>
       <div>
         <textarea value={note} onChange={(e: any) => setNote(e.target.value)} />
