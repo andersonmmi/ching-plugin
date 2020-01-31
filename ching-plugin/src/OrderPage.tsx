@@ -36,7 +36,9 @@ const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, ac
 
   axios.get("https://us-central1-daipos.cloudfunctions.net/itemDetails?itemId=RHfVDGM5L2BKPaIwGOXA", {
     headers: {
+      'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
+      'crossdomain': true
     }
   })
     .then(response => {
