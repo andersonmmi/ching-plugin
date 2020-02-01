@@ -22,19 +22,22 @@ const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, ac
   //   axios.get("https://us-central1-daipos.cloudfunctions.net/orderDetails?orderId=13VwSGhmVuwjpLKFmqd7")
   // }
 
-  let itemizedList;
+  let soldCount, itemName;
 
-  axios.get("https://us-central1-daipos.cloudfunctions.net/itemDetails?itemId=RHfVDGM5L2BKPaIwGOXA"
-    , {
-      headers: {
-        'Content-Type': 'text-plain',
-        'Access-Control-Allow-Origin': '*',
-        'crossdomain': true
-      }
-    }
+  axios.get("https://cors-anywhere.herokuapp.com/https://us-central1-daipos.cloudfunctions.net/itemDetails?itemId=RHfVDGM5L2BKPaIwGOXA"
+    // , {
+    //   headers: {
+    //     'Content-Type': 'text-plain',
+    //     'Access-Control-Allow-Origin': '*',
+    //     'crossdomain': true
+    //   }
+    // }
   )
   .then(response => {
-    itemizedList = response;
+    console.log(response.data.items.soldCount);
+    console.log(response.data.items.name);
+    soldCount = response.data.items.soldCount;
+    itemName = response.data.items.name;
   });
 
   const continueCheckout = () => {
@@ -49,8 +52,7 @@ const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, ac
 
   return (
     <Page title="Ching Checkout">
-      <div>Itemized list goes here</div>
-      <div>{itemizedList}</div>
+      <div>Itemized list goes here {soldCount} {itemName}</div>
       <div>Notes:</div>
       <div>
         <textarea value={note} onChange={(e: any) => setNote(e.target.value)} />
