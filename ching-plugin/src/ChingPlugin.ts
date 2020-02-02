@@ -2,14 +2,6 @@ import { BurnerPluginContext, Plugin, Actions } from '@burner-wallet/types';
 import axios from "axios";
 import OrderPage from './OrderPage';
 
-// export default class ChingPlugin implements Plugin {
-//   private pluginContext?: BurnerPluginContext;
-//
-//   initializePlugin(pluginContext: BurnerPluginContext) {
-//     this.pluginContext = pluginContext;
-//   }
-// }
-
 export function getTxDetails(qr: string) {
   const REGEX = /\/payment\/(0x[0-9a-f]{40})\/((\D\w*)\/)?([\d.]+)\/(\w*)/i
   const scan = REGEX.exec(qr)
