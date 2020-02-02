@@ -2,6 +2,7 @@
   "name": "basic-wallet",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://us-central1-daipos.cloudfunctions.net",
   "dependencies": {
     "@burner-wallet/assets": "^1.0.0",
     "@burner-wallet/core": "^1.0.0",

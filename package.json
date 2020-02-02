@@ -4,6 +4,7 @@
   "author": "David Mihal <david@dmihal.com>",
   "license": "MIT",
   "private": true,
+  "proxy": "https://us-central1-daipos.cloudfunctions.net",
   "scripts": {
     "install": "lerna bootstrap",
     "build": "lerna run --ignore local-wallet --ignore basic-wallet build",
@@ -27,6 +28,7 @@
   },
   "dependencies": {
     "gh-pages": "^2.2.0",
+    "https-proxy-agent": "^4.0.0",
     "typescript": "^3.6.3"
   }
 }
