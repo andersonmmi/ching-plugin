@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PluginPageContext } from '@burner-wallet/types';
 import { getTxDetails } from './ChingPlugin';
+import ItemsList from "./ItemsList";
 import axios from "axios";
 
 const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, actions }) => {
@@ -31,8 +32,8 @@ const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, ac
     .then((res) => {
       console.log(res)
     })
-    .catch(
-      console.log("Error in axios")
+    .catch(err =>
+      console.log(err)
     )
 
   const continueCheckout = () => {
@@ -48,7 +49,7 @@ const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, ac
   return (
     <Page title="Ching Checkout">
       <div>Your order includes:</div>
-      <div>{items}</div>
+      <ItemsList orderId={txDetails.orderId}/>
       <div>Notes:</div>
       <div>
         <textarea value={note} onChange={(e: any) => setNote(e.target.value)} />
