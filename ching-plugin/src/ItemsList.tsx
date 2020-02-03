@@ -3,6 +3,8 @@ import React, { Component} from 'react';
 import Item from './Item';
 import axios from 'axios';
 
+const regex = /(http:\/\/localhost:3000\/)/gm;
+
 class ItemsList extends Component{
   state = {
     items: []
@@ -27,7 +29,9 @@ class ItemsList extends Component{
 
   loadItems = async(itemIds) => {
     let itemResponses = await Promise.all(itemIds.map(itemId =>
-      axios.get("https://us-central1-daipos.cloudfunctions.net/itemDetails?itemId=" + itemId)
+      window.location.href.match(regex)
+      ? axios.get("/itemDetails?itemId=" + itemId)
+      : axios.get("https://us-central1-daipos.cloudfunctions.net/itemDetails?itemId=" + itemId)
     ))
     console.log("itemResponses", itemResponses)
     const items = itemResponses.map(response => response.data.items)
@@ -35,8 +39,12 @@ class ItemsList extends Component{
   }
 
   loadOrder = async(orderId) => {
+    let res;
     try {
-      let res = await axios.get("https://us-central1-daipos.cloudfunctions.net/orderDetails?orderId=" + orderId);
+      console.log("href", window.location.href)
+      window.location.href.match(regex)
+      ? res = await axios.get("/orderDetails?orderId=" + orderId)
+      : res = await axios.get("https://us-central1-daipos.cloudfunctions.net/orderDetails?orderId=" + orderId);
       const orderItems = res.data.items
       console.log("Orders",res)
       let itemIds = orderItems.map(item=>item.id);
