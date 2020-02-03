@@ -4,7 +4,7 @@ import { getTxDetails } from './ChingPlugin';
 import ItemsList from "./ItemsList";
 import CheckoutItemsList from './CheckoutItemsList';
 import charityAlgo from './charityAlgo';
-let charityArray = [];
+let charityArray: Array<String> = [];
 
 const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, actions }) => {
   const [note, setNote] = useState();
@@ -29,7 +29,11 @@ const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, ac
       asset: txDetails.tokenName.toLowerCase(),
       ether: txDetails.amount,
       id: txDetails.orderId,
-      message: `{ChingID: "${txDetails.orderId}", Note: "${note}", Charity: [${charityArray}]}`,
+      message: `{
+        ChingID: "${txDetails.orderId}",
+        ${note ? 'Note: "' + note + '", ' : ""}
+        Charity: [${charityArray}]
+      }`,
       // @DEV: I would like to display the list component below the message
     });
   };
