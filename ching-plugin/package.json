@@ -15,8 +15,7 @@
     "@burner-wallet/assets": "^1.0.0",
     "@burner-wallet/types": "^1.0.0",
     "@types/react": "*",
-    "axios": "^0.19.2",
-    "http-proxy-middleware": "^0.20.0"
+    "axios": "^0.19.2"
   },
   "devDependencies": {
     "typescript": "^3.5.2"
