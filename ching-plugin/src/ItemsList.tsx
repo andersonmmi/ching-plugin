@@ -1,20 +1,16 @@
+// @ts-nocheck
 import React, { Component} from 'react';
 import Item from './Item';
 import axios from 'axios';
 
-// let orderId = "fYgtD9PzPK3AyV7DEQbq";
-
 class ItemsList extends Component{
-  constructor(orderId){
-    super()
-    this.state = {
-      items: [],
-      orderId: orderId.orderId
-    }
+  state = {
+    items: []
   }
 
+
   componentDidMount() {
-    this.loadOrder(this.state.orderId);
+    this.loadOrder(this.props.orderId);
   }
 
   renderItems = () => {
@@ -39,7 +35,6 @@ class ItemsList extends Component{
   }
 
   loadOrder = async(orderId) => {
-    console.log("orderId",orderId)
     try {
       let res = await axios.get("/orderDetails?orderId=" + orderId);
       const orderItems = res.data.items
