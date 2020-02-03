@@ -33,9 +33,9 @@ export default class ChingPlugin {
 
       // @DEV: doesn't show up on confirmation page
       // @ts-ignore
-      console.log("addElement", txDetails.id)
+      console.log("addElement", txDetails.orderId)
       // @ts-ignore
-      pluginContext.addElement("confirm-bottom", <CheckoutItemsList tx={txDetails.id}/>);
+      pluginContext.addElement("confirm-bottom", <CheckoutItemsList tx={txDetails.orderId}/>);
 
       pluginCtx.actions.navigateTo(txDetails.url);
       return true;

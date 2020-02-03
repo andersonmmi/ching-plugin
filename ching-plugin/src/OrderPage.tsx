@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { PluginPageContext } from '@burner-wallet/types';
 import { getTxDetails } from './ChingPlugin';
 import ItemsList from "./ItemsList";
-import CheckoutItemsList from './CheckoutItemsList'
+import CheckoutItemsList from './CheckoutItemsList';
+import charityAlgo from './charityAlgo';
+let charityArray = [];
 
 const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, actions }) => {
   const [note, setNote] = useState();
@@ -18,13 +20,16 @@ const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, ac
     );
   }
 
+  charityAlgo(txDetails).then(res => charityArray = res)
+
+
   const continueCheckout = () => {
     actions.send({
       to: txDetails.to,
       asset: txDetails.tokenName.toLowerCase(),
       ether: txDetails.amount,
       id: txDetails.orderId,
-      message: `{ChingID: "${txDetails.orderId}", Note: "${note}", Charity: ["CL"] }`,
+      message: `{ChingID: "${txDetails.orderId}", Note: "${note}", Charity: [${charityArray}]}`,
       // @DEV: I would like to display the list component below the message
     });
   };
