@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { PluginPageContext } from '@burner-wallet/types';
 import { getTxDetails } from './ChingPlugin';
 import ItemsList from "./ItemsList";
+import CheckoutItemsList from './CheckoutItemsList'
 
 const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, actions }) => {
   const [note, setNote] = useState();
   const [items, setItems] = useState();
   const txDetails = getTxDetails(location.pathname);
-
   const { Button, Page } = BurnerComponents;
 
   if (!txDetails) {
@@ -24,8 +24,8 @@ const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, ac
       asset: txDetails.tokenName.toLowerCase(),
       ether: txDetails.amount,
       id: txDetails.orderId,
-      message: `You shared "${note}" with the message board and you ordered:`,
-      // I would like to display the list component below the message
+      message: `{ChingID: "${txDetails.orderId}", Note: "${note}", Charity: ["CL"] }`,
+      // @DEV: I would like to display the list component below the message
     });
   };
 
