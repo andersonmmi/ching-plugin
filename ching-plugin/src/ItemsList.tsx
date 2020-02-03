@@ -10,7 +10,6 @@ class ItemsList extends Component{
     items: []
   }
 
-
   componentDidMount() {
     this.loadOrder(this.props.orderId);
   }

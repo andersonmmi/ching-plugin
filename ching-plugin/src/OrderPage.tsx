@@ -32,9 +32,9 @@ const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, ac
   return (
     <Page title="Ching Checkout">
       <div>Your order includes:</div>
-      {/* 
+      {/*
       // @ts-ignore */}
-      <ItemsList/>
+      <ItemsList orderId={txDetails.orderId}/>
       <div>Notes:</div>
       <div>
         <textarea value={note} onChange={(e: any) => setNote(e.target.value)} />
