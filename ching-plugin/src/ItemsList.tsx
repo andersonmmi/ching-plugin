@@ -2,19 +2,17 @@
 import React, { Component} from 'react';
 import Item from './Item';
 import axios from 'axios';
-import { getTxDetails } from './ChingPlugin';
 
 const regex = /(http:\/\/localhost:3000\/)/gm;
-const txDetails = getTxDetails(location.pathname);
-const orderId: string = txDetails.orderId;
 
 class ItemsList extends Component{
   state = {
     items: []
   }
-  
+
+
   componentDidMount() {
-    this.loadOrder(orderId);
+    this.loadOrder(this.props.orderId);
   }
 
   renderItems = () => {

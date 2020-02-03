@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from 'react';
 import { PluginPageContext } from '@burner-wallet/types';
 import { getTxDetails } from './ChingPlugin';
