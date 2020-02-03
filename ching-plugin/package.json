@@ -6,7 +6,6 @@
   "license": "MIT",
   "main": "dist/ChingPlugin.js",
   "types": "dist/ChingPlugin.d.ts",
-  "proxy": "https://us-central1-daipos.cloudfunctions.net",
   "scripts": {
     "build": "tsc",
     "start-basic": "tsc -w",
