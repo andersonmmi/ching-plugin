@@ -27,7 +27,7 @@ class ItemsList extends Component{
 
   loadItems = async(itemIds) => {
     let itemResponses = await Promise.all(itemIds.map(itemId =>
-      axios.get("/itemDetails?itemId=" + itemId)
+      axios.get("https://us-central1-daipos.cloudfunctions.net/itemDetails?itemId=" + itemId)
     ))
     console.log("itemResponses", itemResponses)
     const items = itemResponses.map(response => response.data.items)
@@ -36,7 +36,7 @@ class ItemsList extends Component{
 
   loadOrder = async(orderId) => {
     try {
-      let res = await axios.get("/orderDetails?orderId=" + orderId);
+      let res = await axios.get("https://us-central1-daipos.cloudfunctions.net/orderDetails?orderId=" + orderId);
       const orderItems = res.data.items
       console.log("Orders",res)
       let itemIds = orderItems.map(item=>item.id);

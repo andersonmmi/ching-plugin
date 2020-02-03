@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { PluginPageContext } from '@burner-wallet/types';
 import { getTxDetails } from './ChingPlugin';
 import ItemsList from "./ItemsList";
-import axios from "axios";
 
 const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, actions }) => {
   const [note, setNote] = useState();
@@ -18,23 +17,6 @@ const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, ac
       </Page>
     );
   }
-
-  // just need to render some data from the endpoint
-  // let itemizedList = () => {
-  //   axios.get("https://us-central1-daipos.cloudfunctions.net/orderDetails?orderId=13VwSGhmVuwjpLKFmqd7")
-  // }
-
-  let soldCount, itemName;
-
-  // use in an emergency https://cors-anywhere.herokuapp.com/
-  axios
-    .get('/itemDetails?itemId=RHfVDGM5L2BKPaIwGOXA')
-    .then((res) => {
-      console.log(res)
-    })
-    .catch(err =>
-      console.log(err)
-    )
 
   const continueCheckout = () => {
     actions.send({
