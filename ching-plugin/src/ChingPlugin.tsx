@@ -17,7 +17,7 @@ export function getTxDetails(qr: string) {
 }
 
 export default class ChingPlugin {
-  pluginContext?: BurnerPluginContext;
+  private pluginContext?: BurnerPluginContext;
 
   initializePlugin(pluginContext: BurnerPluginContext) {
     pluginContext.addPage('/payment', OrderPage);
