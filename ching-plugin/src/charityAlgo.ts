@@ -32,10 +32,10 @@ const charityAlgo = async(txDetails) => {
       console.log('mergedItems', mergedItems[0])
 
       mergedItems.forEach(e => {
-        if (e.name === "Castro Limon") charityArray.push("CL")
-        if (e.name === "Givethio") charityArray.push("GI")
-        if (e.name === "GRACERefugeeAid") charityArray.push("GR")
-        if (e.name === "Heifer") charityArray.push("HE")
+        if (e.name === "Castro Limon") charityArray.push('"CL"')
+        if (e.name === "Givethio") charityArray.push('"GI"')
+        if (e.name === "GRACERefugeeAid") charityArray.push('"GR"')
+        if (e.name === "Heifer") charityArray.push('"HE"')
       })
       console.log("charityArray", charityArray)
 
