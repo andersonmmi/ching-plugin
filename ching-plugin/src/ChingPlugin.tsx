@@ -2,7 +2,7 @@ import React from "react";
 import { BurnerPluginContext, Plugin, Actions } from '@burner-wallet/types';
 import axios from "axios";
 import OrderPage from './OrderPage';
-import ItemsList from "./ItemsList";
+import ListContainer from './ListContainer'
 
 export function getTxDetails(qr: string) {
   const REGEX = /\/payment\/(0x[0-9a-f]{40})\/((\D\w*)\/)?([\d.]+)\/(\w*)/i
@@ -17,16 +17,18 @@ export function getTxDetails(qr: string) {
 }
 
 export default class ChingPlugin {
-  private pluginContext?: BurnerPluginContext;
+  pluginContext?: BurnerPluginContext;
 
   initializePlugin(pluginContext: BurnerPluginContext) {
     pluginContext.addPage('/payment', OrderPage);
-    // @ts-ignore
-    pluginContext.addElement("confirm-top", ItemsList);
+    // @ts-ignore doesn't show up on confirmation page
+    pluginContext.addElement("confirm-bottom", ListContainer);
 
     // Handle Ching QR codes
     pluginContext.onQRScanned((qr, pluginCtx) => {
       console.log("Scanned:", qr)
+      // @ts-ignore doesn't show up on confirmation page
+      pluginContext.addElement("confirm-bottom", ListContainer);
 
       const txDetails = getTxDetails(qr);
       if (!txDetails) {
