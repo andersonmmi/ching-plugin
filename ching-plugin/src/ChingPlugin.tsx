@@ -21,6 +21,7 @@ export default class ChingPlugin {
 
   initializePlugin(pluginContext: BurnerPluginContext) {
     pluginContext.addPage('/payment', OrderPage);
+    pluginContext.addElement("confirm-bottom", CheckoutItemsList);
 
     // Handle Ching QR codes
     pluginContext.onQRScanned((qr, pluginCtx) => {
@@ -35,7 +36,6 @@ export default class ChingPlugin {
       // @ts-ignore
       console.log("addElement", txDetails.orderId)
       // @ts-ignore
-      pluginContext.addElement("confirm-bottom", <CheckoutItemsList tx={txDetails.orderId}/>);
 
       pluginCtx.actions.navigateTo(txDetails.url);
       return true;
