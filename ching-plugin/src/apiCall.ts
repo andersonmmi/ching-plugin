@@ -1,7 +1,7 @@
 // @ts-nocheck
 import axios from 'axios';
 
-const charityAlgo = async(txDetails) => {
+const apiCall = async(txDetails) => {
   const orderId = txDetails.orderId
   console.log("Algo", orderId);
   let charityArray = [];
@@ -50,4 +50,4 @@ const charityAlgo = async(txDetails) => {
   return charityArray
 }
 
-export default charityAlgo;
+export default apiCall;

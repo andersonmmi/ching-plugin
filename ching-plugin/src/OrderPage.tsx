@@ -29,9 +29,7 @@ const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, ac
       asset: txDetails.tokenName.toLowerCase(),
       ether: txDetails.amount,
       id: txDetails.orderId,
-      message: `{ChingID: "${txDetails.orderId}",
-        ${note ? 'Note: "' + note + '", ' : ""}
-        Charity: [${charityArray}]}`,
+      message: `I:${txDetails.orderId},${note ? 'N:' + note + ',' : ''}C:${charityArray}`,
       // @DEV: I would like to display the list component below the message
     });
   };
