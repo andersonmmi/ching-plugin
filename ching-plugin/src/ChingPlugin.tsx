@@ -34,10 +34,10 @@ export default class ChingPlugin {
       }
 
       // pluginContext.items = "This is the JUICE";
-      async txDetails => {
-        pluginContext.items = await apiCall(txDetails);
-      }
-      console.log("pluginContext.assets", pluginContext.items);
+      // async txDetails => {
+      //   pluginContext.items = await apiCall(txDetails);
+      // }
+      // console.log("pluginContext.assets", pluginContext.items);
 
       pluginCtx.actions.navigateTo(txDetails.url);
       return true;
