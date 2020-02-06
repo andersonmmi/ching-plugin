@@ -4,7 +4,7 @@ import axios from 'axios';
 const apiCall = async(txDetails) => {
   const orderId = txDetails.orderId
   console.log("Algo", orderId);
-  let charityArray = [];
+  let itemizedListDetails = [];
 
   const loadItems = async(itemIds) => {
     let itemResponses = await Promise.all(itemIds.map(itemId =>
@@ -28,16 +28,8 @@ const apiCall = async(txDetails) => {
       const mergedItems = orderItems.map((orderItem, index)=>({
         ...orderItem, ...items[index]
       }))
-      mergedItems;
-      console.log('mergedItems', mergedItems[0])
-
-      mergedItems.forEach(e => {
-        if (e.name === "Castro Limon") charityArray.push("CL")
-        if (e.name === "Giveth.io") charityArray.push("GI")
-        if (e.name === "GRACE Refugee Aid") charityArray.push("GR")
-        if (e.name === "Heifer International") charityArray.push("HE")
-      })
-      console.log("charityArray", charityArray)
+      itemizedListDetails = mergedItems;
+      console.log('itemizedListDetails', itemizedListDetails)
 
     } catch (err) {
       console.log(err);
@@ -47,7 +39,7 @@ const apiCall = async(txDetails) => {
   loadOrder(orderId);
 
 
-  return charityArray
+  return itemizedListDetails;
 }
 
 export default apiCall;
