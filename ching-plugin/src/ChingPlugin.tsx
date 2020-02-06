@@ -3,7 +3,6 @@ import { BurnerPluginContext, Plugin, Actions } from '@burner-wallet/types';
 import axios from "axios";
 import OrderPage from './OrderPage';
 import CheckoutItemsList from './CheckoutItemsList';
-import apiCall from './apiCall';
 
 export function getTxDetails(qr: string) {
   const REGEX = /\/payment\/(0x[0-9a-f]{40})\/((\D\w*)\/)?([\d.]+)\/(\w*)/i
@@ -32,13 +31,6 @@ export default class ChingPlugin {
       if (!txDetails) {
         return
       }
-
-      apiCall(txDetails);
-
-      // @DEV: doesn't show up on confirmation page
-      // @ts-ignore
-      // console.log("addElement", txDetails.orderId)
-      // @ts-ignore
 
       pluginCtx.actions.navigateTo(txDetails.url);
       return true;

@@ -1,9 +1,9 @@
 // @ts-nocheck
 import axios from 'axios';
 
-const apiCall = async(txDetails) => {
-  const orderId = txDetails.orderId
-  console.log("Algo", orderId);
+const apiCall = async(tx) => {
+  const orderId = tx.id
+  console.log("!!!Algo!!!", orderId);
   let itemizedListDetails = [];
 
   const loadItems = async(itemIds) => {
