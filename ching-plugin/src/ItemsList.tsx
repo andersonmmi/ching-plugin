@@ -2,6 +2,7 @@
 import React, { Component} from 'react';
 import Item from './Item';
 import axios from 'axios';
+import ChingPlugin from '../ChingPlugin';
 
 const regex = /(http:\/\/localhost:3000\/)/gm;
 
@@ -10,8 +11,10 @@ class ItemsList extends Component{
     items: []
   }
 
-  componentDidMount() {
-    this.loadOrder(this.props.orderId);
+  async componentDidMount() {
+    const plugin = this.props.plugin as ChingPlugin;
+    const items = await plugin.getOrderDetails(this.props.orderId);
+    this.setState({ items });
   }
 
   renderItems = () => {
@@ -23,37 +26,6 @@ class ItemsList extends Component{
 
     } catch (err) {
       console.log(err)
-    }
-  }
-
-  loadItems = async(itemIds) => {
-    let itemResponses = await Promise.all(itemIds.map(itemId =>
-      axios.get("https://us-central1-daipos.cloudfunctions.net/itemDetails?itemId=" + itemId)
-    ))
-    console.log("itemResponses", itemResponses)
-    const items = itemResponses.map(response => response.data.items)
-    return items;
-  }
-
-  loadOrder = async(orderId) => {
-    let res;
-    try {
-      res = await axios.get("https://us-central1-daipos.cloudfunctions.net/orderDetails?orderId=" + orderId);
-      const orderItems = res.data.items
-      console.log("Orders",res)
-      let itemIds = orderItems.map(item=>item.id);
-      console.log("itemIds", itemIds)
-
-      const items = await this.loadItems(itemIds)
-      const mergedItems = orderItems.map((orderItem, index)=>({
-        ...orderItem, ...items[index]
-      }))
-      this.setState({
-        items: mergedItems
-      })
-
-    } catch (err) {
-      console.log(err);
     }
   }
 

@@ -1,8 +1,7 @@
 // @ts-nocheck
 import axios from 'axios';
 
-const apiCall = async(tx) => {
-  const orderId = tx.id
+const getOrderDetails = async(orderId: string) => {
   console.log("!!!Algo!!!", orderId);
   let itemizedListDetails = [];
 
@@ -36,10 +35,10 @@ const apiCall = async(tx) => {
     }
   }
 
-  loadOrder(orderId);
+  await loadOrder(orderId);
 
 
   return itemizedListDetails;
 }
 
-export default apiCall;
+export default getOrderDetails;
