@@ -29,7 +29,7 @@ const apiCall = async(txDetails) => {
         ...orderItem, ...items[index]
       }))
       itemizedListDetails = mergedItems;
-      console.log('itemizedListDetails', itemizedListDetails)
+      console.log('!!!itemizedListDetails!!!', itemizedListDetails)
 
     } catch (err) {
       console.log(err);
