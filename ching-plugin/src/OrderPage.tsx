@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PluginPageContext } from '@burner-wallet/types';
+import { PluginPageContext, BurnerPluginContext, Plugin, Actions } from '@burner-wallet/types';
 import { getTxDetails } from './ChingPlugin';
 import ItemsList from "./ItemsList";
 import CheckoutItemsList from './CheckoutItemsList';
@@ -34,6 +34,7 @@ const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, ac
     });
   };
 
+  // if(!items) return "loading..."
   return (
     <Page title="Ching Checkout">
       <div>Your order includes:</div>

@@ -3,6 +3,7 @@ import { BurnerPluginContext, Plugin, Actions } from '@burner-wallet/types';
 import axios from "axios";
 import OrderPage from './OrderPage';
 import CheckoutItemsList from './CheckoutItemsList';
+import apiCall from './apiCall';
 
 export function getTxDetails(qr: string) {
   const REGEX = /\/payment\/(0x[0-9a-f]{40})\/((\D\w*)\/)?([\d.]+)\/(\w*)/i
@@ -31,6 +32,12 @@ export default class ChingPlugin {
       if (!txDetails) {
         return
       }
+
+      // pluginContext.items = "This is the JUICE";
+      async txDetails => {
+        pluginContext.items = await apiCall(txDetails);
+      }
+      console.log("pluginContext.assets", pluginContext.items);
 
       pluginCtx.actions.navigateTo(txDetails.url);
       return true;
