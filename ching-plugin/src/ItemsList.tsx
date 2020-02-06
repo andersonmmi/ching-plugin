@@ -58,7 +58,6 @@ class ItemsList extends Component{
   }
 
   render() {
-    if(!this.state.items) return "loading..."
     return (
       <div>
         <div className="list-group list-group-flush">
