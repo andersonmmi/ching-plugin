@@ -7,7 +7,7 @@ function Item(props: any) {
 
   return (
     <div className='Item'>
-      {qty} {item} @ {price}
+      {qty} {item} @ {parseFloat(price.toFixed(2))}
     </div>
   );
 }
