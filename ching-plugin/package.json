@@ -2,7 +2,7 @@
   "name": "ching-plugin",
   "description": "Allows burner wallet to transact with Ching Point of Sale",
   "author": "Aaron Anderson <aaron@ching.store>",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "license": "MIT",
   "main": "dist/ChingPlugin.js",
   "types": "dist/ChingPlugin.d.ts",
