@@ -17,7 +17,7 @@ export function getTxDetails(qr: string) {
   }
 }
 
-export default class ChingPlugin {
+class ChingPlugin {
   private pluginContext?: BurnerPluginContext;
   private orderDetailsCache: { [id: string]: any } = {};
 
@@ -73,3 +73,5 @@ export default class ChingPlugin {
     return this.orderDetailsCache[id];
   }
 }
+
+export default new ChingPlugin

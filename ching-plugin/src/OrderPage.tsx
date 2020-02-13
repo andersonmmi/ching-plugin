@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { PluginPageContext, BurnerPluginContext, Plugin, Actions } from '@burner-wallet/types';
-import { getTxDetails } from './ChingPlugin';
+import ChingPlugin, { getTxDetails } from './ChingPlugin';
 import ItemsList from "./ItemsList";
 import CheckoutItemsList from './CheckoutItemsList';
 import charityAlgo from './charityAlgo';
 let charityArray: Array<String> = [];
 
 const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, actions }) => {
-  const [note, setNote] = useState();
+  // const [note, setNote] = useState();
   const [items, setItems] = useState();
   const txDetails = getTxDetails(location.pathname);
   const { Button, Page } = BurnerComponents;
+  let message = null;
 
   if (!txDetails) {
     return (
@@ -29,7 +30,7 @@ const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, ac
       asset: txDetails.tokenName.toLowerCase(),
       ether: txDetails.amount,
       id: txDetails.orderId,
-      message: `I:${txDetails.orderId},${note ? 'N:' + note + ',' : ''}C:${charityArray}`,
+      message: `I:${txDetails.orderId},${message ? 'N:' + message + ',' : ''}C:${charityArray}`,
       // @DEV: I would like to display the list component below the message
     });
   };
@@ -40,10 +41,10 @@ const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, ac
       <div>Your order includes:</div>
       {/*
       // @ts-ignore */}
-      <ItemsList orderId={txDetails.orderId}/>
+      <ItemsList orderId={txDetails.orderId} plugin={ChingPlugin}/>
       <div>Notes:</div>
       <div>
-        <textarea value={note} onChange={(e: any) => setNote(e.target.value)} />
+        <textarea value={message} onChange={(e: any) => message = e.target.value} />
       </div>
 
       <Button onClick={continueCheckout}>Continue</Button>

@@ -2,7 +2,7 @@
 import React, { Component} from 'react';
 import Item from './Item';
 import axios from 'axios';
-import ChingPlugin from '../ChingPlugin';
+import ChingPlugin from './ChingPlugin';
 
 const regex = /(http:\/\/localhost:3000\/)/gm;
 
@@ -12,7 +12,9 @@ class ItemsList extends Component{
   }
 
   async componentDidMount() {
+    console.log("this props", this.props)
     const plugin = this.props.plugin as ChingPlugin;
+    // console.log()
     const items = await plugin.getOrderDetails(this.props.orderId);
     this.setState({ items });
   }
