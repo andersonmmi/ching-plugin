@@ -33,7 +33,7 @@ const BurnerWallet = () =>
   <ModernUI
     title="Basic Wallet"
     core={core}
-    plugins={[exchange, new ChingPlugin()]}
+    plugins={[exchange, ChingPlugin]}
   />
 
 

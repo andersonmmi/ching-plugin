@@ -17,8 +17,9 @@ export function getTxDetails(qr: string) {
   }
 }
 
-export default class ChingPlugin {
+class ChingPlugin {
   private pluginContext?: BurnerPluginContext;
+  private orderDetailsCache: { [id: string]: any } = {};
 
   initializePlugin(pluginContext: BurnerPluginContext) {
     pluginContext.addPage('/payment', OrderPage);
@@ -64,4 +65,13 @@ export default class ChingPlugin {
       });
     });
   }
+
+  async getOrderDetails(id: string) {
+    if (!this.orderDetailsCache[id]) {
+      this.orderDetailsCache[id] = await apiCall(id);
+    }
+    return this.orderDetailsCache[id];
+  }
 }
+
+export default new ChingPlugin
