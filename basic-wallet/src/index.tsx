@@ -12,7 +12,7 @@ const it = new ERC20Asset({
   id: "buf",
   name: "BUF",
   network: "100",
-  address: "0x38473B255366A6B59b035DB9a5aE3608126F6869"
+  address: "0xBb2692EC9976975A8cB80B52832A94273fBFB438"
 });
 
 const core = new BurnerCore({

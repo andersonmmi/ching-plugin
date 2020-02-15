@@ -11,7 +11,7 @@ const OrderPage: React.FC<PluginPageContext> = ({ location, BurnerComponents, ac
   const [items, setItems] = useState();
   const txDetails = getTxDetails(location.pathname);
   const { Button, Page } = BurnerComponents;
-  let message = null;
+  let message: any = null;
 
   if (!txDetails) {
     return (
