@@ -9,8 +9,8 @@ import ModernUI from '@burner-wallet/modern-ui';
 import ChingPlugin from 'ching-plugin';
 
 const it = new ERC20Asset({
-  id: "buf",
-  name: "BUF",
+  id: "buff",
+  name: "BUFF",
   network: "100",
   address: "0xBb2692EC9976975A8cB80B52832A94273fBFB438"
 });
